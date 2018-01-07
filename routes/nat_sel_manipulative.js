@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
+/* GET nat_sel_manipulative page. */
 router.get('/', function(req, res, next) {
   res.render('nat_sel_manipulative', {
     pageTitle: "Digital Manipulative 4.1"

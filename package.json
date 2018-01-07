@@ -2,11 +2,11 @@
   "name": "pikescience",
   "version": "1.0.0",
   "description": "This is meant to be an interactive, informative website for my 7th grade science students",
-  "main": "app.js",
+  "main": "pikescience.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app",
-    "devstart": "nodemon app"
+    "start": "node pikescience",
+    "devstart": "nodemon pikescience"
   },
   "dependencies": {
     "async": "^2.6.0",
@@ -14,9 +14,9 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "express-handlebars": "^3.0.0",
     "mongoose": "^5.0.0-rc0",
     "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11",
     "serve-favicon": "~2.4.5"
   },
   "devDependencies": {
