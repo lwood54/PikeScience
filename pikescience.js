@@ -8,7 +8,7 @@ const handlebars = require('express-handlebars').create({defaultLayout:'main'});
 const index = require('./routes/index');
 const nat_sel_manipulative = require('./routes/nat_sel_manipulative');
 const about = require('./routes/about');
-
+ 
 // starts express app
 const app = express();
 
