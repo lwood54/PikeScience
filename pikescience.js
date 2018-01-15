@@ -4,11 +4,6 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-// requires routes so they can be used for the views template
-const index = require('./routes/index');
-const nat_sel_manipulative = require('./routes/nat_sel_manipulative');
-const about = require('./routes/about');
- 
 // starts express app
 const app = express();
 
@@ -24,19 +19,20 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')));
 
 ///////////// ROUTES //////////////
-app.get('/', (req, res) => {
-  res.render('index');
-});
-app.get('/about', (req, res) => {
-  res.render('about');
-});
+// set up home page route
+const index = require('./routes/index');
+app.use('/', index);
 
-app.get('/nat_sel_manipulative', (req, res) => {
-  res.render('nat_sel_manipulative', {
-    pageTitle: 'Digital Manipulative 4.1',
-    otherVar: 'some other stuff'
-  });
-});
+// set up about page route
+const about = require('./routes/about');
+app.use('/about', about);
+
+// set up routes for each digital manipulative
+// UNIT 4
+const digitalManipulative4_1_Sec_1 = require('./routes/digitalManipulative4_1_Sec_1');
+app.use('/digitalManipulative4_1_Sec_1', digitalManipulative4_1_Sec_1);
+const digitalManipulative4_1_Sec_2 = require('./routes/digitalManipulative4_1_Sec_2');
+app.use('/digitalManipulative4_1_Sec_2', digitalManipulative4_1_Sec_2);
 
 
 
