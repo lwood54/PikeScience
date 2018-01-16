@@ -5,8 +5,8 @@
   "main": "pikescience.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node pikescience",
-    "devstart": "nodemon pikescience"
+    "start": "node pikescience.js",
+    "devstart": "nodemon pikescience.js"
   },
   "dependencies": {
     "async": "^2.6.0",
