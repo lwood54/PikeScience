@@ -1,0 +1,104 @@
+* {
+  font-family: 'Exo', sans-serif;
+}
+
+.pageContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-row-gap: 5px;
+  /* background-color: lightgray; */
+}
+
+.row1Group, .row2Group, .row3Group {
+  /* border: 1px solid black; */
+  text-align: center;
+}
+
+/*******************  DROP DOWN MENU *******************/
+.dropDown {
+  display: grid;
+  position: relative;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  /* border: 1px solid red; */
+}
+
+.dropbtn {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  color: black;
+  width: 50%;
+  height: 50%;
+  font-size: 1.3em;
+  border: none;
+  cursor: pointer;
+  padding: 5%;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: rgb(125, 129, 135);
+    border-radius: 15%;
+    box-shadow: 2px 2px 5px black;
+}
+
+.dropbtn:active {
+  box-shadow: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  grid-column-start: 2;
+  grid-row-start: 2;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 4%;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropDown a:hover {
+  background-color: rgb(163, 161, 161);
+}
+
+.show {
+  display:block;
+}
+
+/*******************  END DROP DOWN MENU *******************/
+
+/*******************  ROW 1 HEADER FEATURES *******************/
+.row1Group {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 2fr 1fr;
+  background-color: lightgray;
+  border-radius: 6px;
+}
+
+.row1Group h1, .row1Group h4 {
+  grid-column-start: 2;
+  /* border: 1px solid blue; */
+  margin: 0;
+}
+
+/*******************  ROW 2 FEATURES *******************/
+.row2Group {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.mainContent {
+  grid-row-start: 3;
+  font-size: 2em;
+}

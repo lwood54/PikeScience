@@ -2,16 +2,29 @@
 <html>
   <head>
     <meta charset="utf-8">
+    {{!-- load fontawesome script --}}
+    <script src="https://use.fontawesome.com/448458d43e.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
     <link rel="stylesheet" href="../stylesheets/digitalManipulative.css">
     <title>{{title}}</title>
   </head>
   <body>
-    <div class="pageTitle">
-      <h1>{{pageTitle}}</h1>
-      <h4>{{subHeading}}</h2>
-      <h5>- by Logan Wood</h5>
+    <div class="headerGroup">
+      <div class="pageTitle">
+        <h1>{{pageTitle}}</h1>
+        <h4>{{subHeading}}</h2>
+        <h5>- by Logan Wood</h5>
+      </div>
+      <div class="dropDown">
+        <i class="fa fa-bars dropbtn" aria-hidden="true" onclick="dropDownMenu()"></i>
+        <div id="dropDownMenu" class="dropdown-content">
+          <a href="/">Home</a>
+          {{!-- <a href="/digitalManipulative1_1_Sec_1">Manipulative 1.1</a> --}}
+          <a href="/digitalManipulative4_1_Sec_1">Manipulative 4.1</a>
+        </div>
+      </div>
     </div>
+
 
     <div class="container">
       <div class="section1">
@@ -103,8 +116,7 @@
       </div> <!-- END OF FOOTER DIV -->
     </div> <!-- END OF CONTAINER -->
 
-      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
       <script src="/javascripts/digitalManipulative.js"></script>
+      <script src="../javascripts/main.js"></script>
   </body>
 </html>

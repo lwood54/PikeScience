@@ -31,17 +31,85 @@ h5 {
   text-align: center;
 }
 
-.pageTitle {
+.headerGroup {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
   margin-bottom: 15px;
   width: 100%;
   background-color: rgb(208, 229, 227);
-  padding: 2px;
+}
+
+.pageTitle {
+  grid-column-start: 2;
 }
 
 .pageTitle h1, .pageTitle h4, .pageTitle h5 {
   margin: 2px;
   padding: 1px;
 }
+
+/*******************  DROP DOWN MENU *******************/
+.dropDown {
+  display: grid;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  position: relative;
+  /* border: 1px solid red; */
+}
+
+.dropbtn {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  color: black;
+  width: 50%;
+  height: 50%;
+  font-size: 1.3em;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  padding: 5%;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: rgb(125, 129, 135);
+    border-radius: 15%;
+    box-shadow: 2px 2px 5px black;
+}
+
+.dropbtn:active {
+  box-shadow: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4%;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropDown a:hover {
+  background-color: rgb(163, 161, 161);
+}
+
+.show {
+  display:block;
+}
+
+/*******************  END DROP DOWN MENU *******************/
 
 .container {
   display: grid;
@@ -82,8 +150,8 @@ h5 {
 
 .row1 img, .row2 img, .row3 img {
   position: relative;
-  height: 100px;
-  margin-top: 5%;
+  height: 60%;
+  margin-top: 10%;
   cursor: move;
   border-radius: 10%;
   z-index: 5;
@@ -95,7 +163,7 @@ h5 {
   width: 90%;
   padding: 5%;
   border-radius: 10px;
-  font-size: .7em;
+  font-size: .5em;
   cursor: move;
   font-weight: 900;
   text-align: center;
@@ -114,7 +182,7 @@ h5 {
 }
 
 .section1 h4 {
-  height: 12%;
+  height: 14%;
   font-weight: 600;
   padding-bottom: 5%;
 }

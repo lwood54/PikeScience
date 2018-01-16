@@ -71,18 +71,21 @@ function updateScore() {
     scoreNumberEl.style.paddingLeft = "15%";
     button.style.visibility = "visible";
     if (percentRight >= 70) {
-      button.innerHTML = "NEXT CHALLENGE";
-      console.log("why is this firing early?");
       section1ChoicesDiv.style.backgroundColor = "transparent";
-      button.addEventListener ("click", function() {
-        if (currentHref.includes("sec_1")) {
+      if (currentHref.includes("Sec_1")) {
+        button.innerHTML = "NEXT CHALLENGE";
+        button.addEventListener ("click", function() {
           // after other units are made, I'll need to create a way to auto link to "Sec_2" here
           location.href = "/digitalManipulative4_1_Sec_2";
-        } else {
+        });
+      } else {
           // If section 2, then go back to home screen to select from other manipulatives
-          location.href = "/";
+          button.innerHTML = "Home";
+          button.addEventListener ("click", function() {
+            // after other units are made, I'll need to create a way to auto link to "Sec_2" here
+            location.href = "/";
+          });
         }
-      });
     } else {
         button.innerHTML = "TRY AGAIN, you need at least 70%.";
         button.style.fontSize = ".8em";
