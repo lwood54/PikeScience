@@ -28,11 +28,20 @@ const about = require('./routes/about');
 app.use('/about', about);
 
 // set up routes for each digital manipulative
+
 // UNIT 4
+  
+  // 4.1
 const digitalManipulative4_1_Sec_1 = require('./routes/digitalManipulative4_1_Sec_1');
 app.use('/digitalManipulative4_1_Sec_1', digitalManipulative4_1_Sec_1);
 const digitalManipulative4_1_Sec_2 = require('./routes/digitalManipulative4_1_Sec_2');
 app.use('/digitalManipulative4_1_Sec_2', digitalManipulative4_1_Sec_2);
+  
+  // 4.3
+const digitalManipulative4_3_Sec_1 = require('./routes/digitalManipulative4_3_Sec_1');
+app.use('/digitalManipulative4_3_Sec_1', digitalManipulative4_3_Sec_1);
+const digitalManipulative4_3_Sec_2 = require('./routes/digitalManipulative4_3_Sec_2');
+app.use('/digitalManipulative4_3_Sec_2', digitalManipulative4_3_Sec_2);
 
 
 
