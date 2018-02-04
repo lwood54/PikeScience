@@ -24,7 +24,7 @@ const index = require('./routes/index');
 app.use('/', index);
 
 // set up about page route
-const about = require('./routes/about');
+const about = require('./routes/about.js');
 app.use('/about', about);
 
 // set up routes for each digital manipulative
@@ -46,7 +46,9 @@ app.use('/digitalManipulative4_3_Sec_2', digitalManipulative4_3_Sec_2);
 
 
 
-
+// USER WON PAGE
+const userWon = require('./routes/won.js');
+app.use('/won', userWon);
 
 
 //////// CATCHING ERRORS /////////////

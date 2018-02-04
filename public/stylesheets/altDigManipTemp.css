@@ -1,0 +1,173 @@
+* {
+    font-family: 'Exo', sans-serif;
+  }
+
+
+img {
+    height: 120px;
+}
+
+.pageContainer {
+    display: grid;
+    grid-template-areas:
+    "game"
+    "info";
+}
+
+/************* GAME BOARD *************/
+
+.gameBoard {
+    grid-area: game;
+    height: 500px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.gameBoard h4 {
+    margin: 0;
+    padding: 5px 0 5px 0;
+}
+
+.dropZone {
+    position: relative;
+    height: 150px;
+    background-color: rgb(62, 95, 105);
+    border: 1px solid rgb(139, 141, 145);
+    align-content: center;
+}
+
+.dropZone .choices {
+    position: relative;
+    margin-top: 10px;
+    width: 90%;
+}
+
+.dropZone .textAnswers {
+    font-size: .7em;
+    height: 80%;
+}
+
+.dropZone img {
+    height: auto;
+}
+
+/************* PAGE INFO *************/
+
+.pageInfo {
+    grid-area: info;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-areas:
+    "siteInfo cards scoreInfo";
+    grid-column-gap: 2%;
+    margin-top: 10px;
+}
+
+.choices {
+    margin: auto;
+    position: absolute;
+    width: 250px;
+    font-size: .8em;
+    background-color: lightgray;
+    text-align: center;
+    cursor: move;
+    border-radius: 5px;
+    box-shadow: 4px 4px 12px rgb(20, 24, 29);
+}
+
+.textAnswers {
+    height: 125px;
+    padding: 8px 1px 0 1px;
+}
+
+.headerGroup {
+    grid-area: siteInfo;
+    padding: 2%;
+}
+
+.headerGroup h4, .headerGroup h6 {
+    text-align: center;
+    margin: 0;
+}
+
+#cardSelection {
+    grid-area: cards;
+    padding: 2%;
+}
+
+.scoreBoard {
+    grid-area: scoreInfo;
+    text-align: center;
+}
+
+
+
+/************* JS LOGIC CONNECTED *************/
+
+.fillGreen {
+    background-color: rgb(82, 165, 120);
+    box-shadow: none;
+}
+  
+.fillRed {
+    background-color: rgb(214, 69, 25);
+}
+
+
+
+/************* DROP DOWN MENU *************/
+
+.dropbtn {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    color: black;
+    width: 100%;
+    height: 50%;
+    font-size: 1.3em;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    padding-top: 2.5%;
+    padding-bottom: 2.5;
+    border-radius: 4px;
+}
+  
+  .dropbtn:hover, .dropbtn:focus {
+      background-color: rgb(125, 129, 135);
+      outline: none;
+  }
+  
+  .dropbtn:active {
+    outline: none;
+  }
+  
+  .dropdown-content {
+      display: none;
+      position: relative;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 4%;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      bottom: 224px;
+      
+  }
+  
+  .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+  
+  .dropDown a:hover {
+    background-color: rgb(163, 161, 161);
+  }
+  
+  .show {
+    display:block;
+  }

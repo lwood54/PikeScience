@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
+/* GET the page for when user WON!. */
 router.get('/', function(req, res, next) {
-  res.render('index.handlebars', {
-    pageTitle: 'Using pageTitle variable!'
+  res.render('won.handlebars', {
+    pageTitle: "You won!!!"
   });
 });
 
