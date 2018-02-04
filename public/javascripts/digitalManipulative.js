@@ -1,5 +1,6 @@
 let greenCount = 0;
 let redCount = 0;
+let currentTouchElement = null;
 
 //////////////// FUNCTIONS ////////////////
 const drag = (ev) => {
@@ -31,25 +32,29 @@ const drop = (ev) => {
 };
 
 const handleEnd = (ev) => {
-    ev.preventDefault();
-        // use try/catch to avoid console error when expecting if no children
-  try {
-    // make sure there is no choice card already in the div
-    let evObj = document.getElementById(ev.target.id);
-    if (ev.target.classList.contains('choices')) {
-      return false;
-    } else if (evObj.children.length > 0) {
-        return false;
-    } else {
-        ev.preventDefault();
-        let elId = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(elId));
-        checkDropZone(ev.target.id, elId);
-    }
-  }
-  catch(err) {
-    console.log("Expected error if no children: ", err);
-  }
+    console.log(ev);
+    console.log("currentTouchElement: ", currentTouchElement);
+    try {
+        // make sure there is no choice card already in the div
+        let evObj = document.getElementById(ev.target.id);
+        if (ev.target.classList.contains('choices')) {
+            console.log('option A fired');
+            return false;
+        } else if (evObj.children.length > 0) {
+            console.log('option B fired');
+            return false;
+        } else {
+            console.log('option C fired');
+            ev.preventDefault();
+            // let elId = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(currentTouchElement));
+            checkDropZone(ev.target.id, currentTouchElement);
+        }
+      }
+      catch(err) {
+        console.log("Expected error if no children: ", err);
+      }
+    
 };
 
 const mouseOver = (ev) => {
@@ -253,11 +258,11 @@ cardArray.forEach((cardObj) => {
     cardArray[index].ondragstart = drag;
     cardArray[index].addEventListener('touchmove', (ev) => {
         let touch = ev.targetTouches[0];
-        cardArray[index].style.left = touch.pageX-5 + "px";
-        cardArray[index].style.top = touch.pageY+5 + "px";
+        currentTouchElement = cardArray[index].id;
+        cardArray[index].style.left = touch.pageX - 60 + "px";
+        cardArray[index].style.top = touch.pageY - 60 + "px";
         ev.preventDefault();
     }, false);
-    cardArray[index];
 });
 
 const collectionOfDropZones = document.getElementsByClassName("dropZone");
