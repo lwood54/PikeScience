@@ -30,6 +30,16 @@ const drop = (ev) => {
   }
 };
 
+const handleEnd = (ev) => {
+    ev.preventDefault();
+    try {
+        let evObj = document.getElementById(ev.target.id);
+        alert(evObj);
+    } catch (error) {
+        
+    }
+}
+
 const mouseOver = (ev) => {
     ev.target.style.transform = "scale(1.1)";
     ev.target.style.transition = "all 0.3s";
@@ -241,7 +251,7 @@ cardArray.forEach((cardObj) => {
 const collectionOfDropZones = document.getElementsByClassName("dropZone");
 for(var i = 0; i < collectionOfDropZones.length; i++) {
   collectionOfDropZones[i].ondrop = drop;
-  collectionOfDropZones[i].addEventListener('touchend', drop, false);
+  collectionOfDropZones[i].addEventListener('touchend', handleEnd, false);
   collectionOfDropZones[i].ondragover = allowDrop;
 }
 
