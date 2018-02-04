@@ -235,12 +235,13 @@ cardArray.forEach((cardObj) => {
         cardArray[index].style.top = touch.pageY+5 + "px";
         ev.preventDefault();
     }, false);
-    cardArray[index].addEventListener('touchend', drop, false);
+    cardArray[index];
 });
 
 const collectionOfDropZones = document.getElementsByClassName("dropZone");
 for(var i = 0; i < collectionOfDropZones.length; i++) {
   collectionOfDropZones[i].ondrop = drop;
+  collectionOfDropZones[i].addEventListener('touchend', drop, false);
   collectionOfDropZones[i].ondragover = allowDrop;
 }
 
