@@ -1,6 +1,6 @@
 let greenCount = 0;
 let redCount = 0;
-let currentTouchElement = null;
+let currentTouchElementID = null;
 
 //////////////// FUNCTIONS ////////////////
 const drag = (ev) => {
@@ -31,9 +31,18 @@ const drop = (ev) => {
   }
 };
 
+const handleMove = (ev) => {
+    currentTouchElementID = ev.target.currentEl.id;
+    let touch = ev.targetTouches[0];
+    let elem = ev.target.currentEl;
+    elem.style.left = touch.pageX - 60 + "px";
+    elem.style.top = touch.pageY - 60 + "px";
+    ev.preventDefault();
+};
+
 const handleEnd = (ev) => {
     console.log(ev);
-    console.log("currentTouchElement: ", currentTouchElement);
+    console.log("currentTouchElementID: ", currentTouchElementID);
     try {
         // make sure there is no choice card already in the div
         let evObj = document.getElementById(ev.target.id);
@@ -46,12 +55,11 @@ const handleEnd = (ev) => {
         } else {
             console.log('option C fired');
             ev.preventDefault();
-            let elem = document.getElementById(currentTouchElement);
-            ev.target.appendChild(document.getElementById(currentTouchElement));
+            let elem = document.getElementById(currentTouchElementID);
+            ev.target.appendChild(document.getElementById(currentTouchElementID));
             elem.style.left = null;
             elem.style.top = null;
-            checkDropZone(ev.target.id, currentTouchElement);
-            currentTouchElement = "";
+            checkDropZone(ev.target.id, currentTouchElementID);
         }
       }
       catch(err) {
@@ -168,6 +176,9 @@ function checkDropZone(targetId, elId) {
     movingEl.style.backgroundColor = "transparent";
     movingEl.style.boxShadow = "none";
     movingEl.onmouseover = null;
+    document.getElementById(currentTouchElementID).removeEventListener('touchmove', hadleMove);
+    document.getElementById(currentTouchElementID).removeEventListener('touchend', handleEnd);
+    currentTouchElementID = "";
     return true;
   }
   
@@ -181,6 +192,9 @@ function checkDropZone(targetId, elId) {
     movingEl.style.backgroundColor = "transparent";
     movingEl.style.boxShadow = "none";
     movingEl.onmouseover = null;
+    document.getElementById(currentTouchElementID).removeEventListener('touchmove', hadleMove);
+    document.getElementById(currentTouchElementID).removeEventListener('touchend', handleEnd);
+    currentTouchElementID = "";
     return true;
   }
   
@@ -259,13 +273,17 @@ cardArray.forEach((cardObj) => {
     cardArray[index].onmouseover = mouseOver;
     cardArray[index].onmouseout = mouseOut;
     cardArray[index].ondragstart = drag;
-    cardArray[index].addEventListener('touchmove', (ev) => {
-        let touch = ev.targetTouches[0];
-        currentTouchElement = cardArray[index].id;
-        cardArray[index].style.left = touch.pageX - 60 + "px";
-        cardArray[index].style.top = touch.pageY - 60 + "px";
-        ev.preventDefault();
-    }, false);
+    cardArray[index].addEventListener('touchmove', handleMove, false);
+    // I am setting the property that will be stored on the ev.target.currentEl ---> PRETTY AWESOME!
+    cardArray[index].currentEl = cardArray[index];
+    // cardArray[index].addEventListener('touchmove', (ev) => {
+    //     let touch = ev.targetTouches[0];
+    //     currentTouchElementID = cardArray[index].id;
+    //     cardArray[index].style.left = touch.pageX - 60 + "px";
+    //     cardArray[index].style.top = touch.pageY - 60 + "px";
+    //     ev.preventDefault();
+    // }, false);
+
 });
 
 const collectionOfDropZones = document.getElementsByClassName("dropZone");
