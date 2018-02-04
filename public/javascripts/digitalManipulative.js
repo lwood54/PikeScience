@@ -229,6 +229,12 @@ cardArray.forEach((cardObj) => {
     cardArray[index].onmouseover = mouseOver;
     cardArray[index].onmouseout = mouseOut;
     cardArray[index].ondragstart = drag;
+    cardArray[index].addEventListener('touchmove', (ev) => {
+        let touch = ev.targetTouches[0];
+        cardArray[index].style.left = touch.pageX-5 + "px";
+        cardArray[index].style.top = touch.pageY+5 + "px";
+        ev.preventDefault();
+    }, false);
 });
 
 const collectionOfDropZones = document.getElementsByClassName("dropZone");
@@ -257,5 +263,3 @@ for(var i = 0; i < collectionOfDropZones.length; i++) {
 //      a. keep score, show accuracy
 //      b. don't allow progress to section 2 unless 70% or higher
 //      c. show a really cool celebration page when a section 2 has been completed.
-
-
