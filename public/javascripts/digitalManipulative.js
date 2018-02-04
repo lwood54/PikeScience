@@ -46,8 +46,10 @@ const handleEnd = (ev) => {
         } else {
             console.log('option C fired');
             ev.preventDefault();
-            // let elId = ev.dataTransfer.getData("text");
+            let elem = document.getElementById(currentTouchElement);
             ev.target.appendChild(document.getElementById(currentTouchElement));
+            elem.style.left = null;
+            elem.style.top = null;
             checkDropZone(ev.target.id, currentTouchElement);
         }
       }
