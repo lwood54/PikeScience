@@ -31,6 +31,7 @@ const drop = (ev) => {
 };
 
 const handleEnd = (ev) => {
+    ev.preventDefault();
         // use try/catch to avoid console error when expecting if no children
   try {
     // make sure there is no choice card already in the div
