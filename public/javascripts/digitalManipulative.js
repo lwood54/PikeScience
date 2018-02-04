@@ -235,6 +235,7 @@ cardArray.forEach((cardObj) => {
         cardArray[index].style.top = touch.pageY+5 + "px";
         ev.preventDefault();
     }, false);
+    cardArray[index].addEventListener('touchend', drop);
 });
 
 const collectionOfDropZones = document.getElementsByClassName("dropZone");
