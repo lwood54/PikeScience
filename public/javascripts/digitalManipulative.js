@@ -177,7 +177,6 @@ function checkDropZone(targetId, elId) {
     movingEl.style.backgroundColor = "transparent";
     movingEl.style.boxShadow = "none";
     movingEl.onmouseover = null;
-    currentTouchElement = "";
     return true;
   }
   
@@ -191,7 +190,6 @@ function checkDropZone(targetId, elId) {
     movingEl.style.backgroundColor = "transparent";
     movingEl.style.boxShadow = "none";
     movingEl.onmouseover = null;
-    currentTouchElement = "";
     return true;
   }
   
