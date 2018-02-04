@@ -24,6 +24,7 @@ const drop = (ev) => {
         let elId = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(elId));
         checkDropZone(ev.target.id, elId);
+        currentTouchElement = "";
     }
   }
   catch(err) {
@@ -58,6 +59,14 @@ const handleEnd = (ev) => {
         console.log("Expected error if no children: ", err);
       }
     
+};
+
+const touchMove = (ev) => {
+    let touch = ev.targetTouches[0];
+    currentTouchElement = cardArray[index].id;
+    cardArray[index].style.left = touch.pageX - 60 + "px";
+    cardArray[index].style.top = touch.pageY - 60 + "px";
+    ev.preventDefault();
 };
 
 const mouseOver = (ev) => {
@@ -168,6 +177,8 @@ function checkDropZone(targetId, elId) {
     movingEl.style.backgroundColor = "transparent";
     movingEl.style.boxShadow = "none";
     movingEl.onmouseover = null;
+    currentTouchElement.removeEventListener('touchmove', touchMove);
+    currentTouchElement = "";
     return true;
   }
   
@@ -181,6 +192,8 @@ function checkDropZone(targetId, elId) {
     movingEl.style.backgroundColor = "transparent";
     movingEl.style.boxShadow = "none";
     movingEl.onmouseover = null;
+    currentTouchElement.removeEventListener('touchmove', touchMove);
+    currentTouchElement = "";
     return true;
   }
   
@@ -259,13 +272,7 @@ cardArray.forEach((cardObj) => {
     cardArray[index].onmouseover = mouseOver;
     cardArray[index].onmouseout = mouseOut;
     cardArray[index].ondragstart = drag;
-    cardArray[index].addEventListener('touchmove', (ev) => {
-        let touch = ev.targetTouches[0];
-        currentTouchElement = cardArray[index].id;
-        cardArray[index].style.left = touch.pageX - 60 + "px";
-        cardArray[index].style.top = touch.pageY - 60 + "px";
-        ev.preventDefault();
-    }, false);
+    cardArray[index].addEventListener('touchmove', touchMove, false);
 });
 
 const collectionOfDropZones = document.getElementsByClassName("dropZone");
