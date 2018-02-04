@@ -31,14 +31,25 @@ const drop = (ev) => {
 };
 
 const handleEnd = (ev) => {
-    ev.preventDefault();
-    try {
-        let evObj = document.getElementById(ev.target.id);
-        alert(evObj);
-    } catch (error) {
-        
+        // use try/catch to avoid console error when expecting if no children
+  try {
+    // make sure there is no choice card already in the div
+    let evObj = document.getElementById(ev.target.id);
+    if (ev.target.classList.contains('choices')) {
+      return false;
+    } else if (evObj.children.length > 0) {
+        return false;
+    } else {
+        ev.preventDefault();
+        let elId = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(elId));
+        checkDropZone(ev.target.id, elId);
     }
-}
+  }
+  catch(err) {
+    console.log("Expected error if no children: ", err);
+  }
+};
 
 const mouseOver = (ev) => {
     ev.target.style.transform = "scale(1.1)";
