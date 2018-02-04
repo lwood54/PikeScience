@@ -51,6 +51,7 @@ const handleEnd = (ev) => {
             elem.style.left = null;
             elem.style.top = null;
             checkDropZone(ev.target.id, currentTouchElement);
+            currentTouchElement = "";
         }
       }
       catch(err) {
