@@ -1,0 +1,43 @@
+.box {
+    display: inline-block;
+    height: 125px;
+    width: 125px;
+    text-align: center;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+#homeLink {
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: rgba(32, 30, 30, 0.911);
+    background-color: rgba(160, 48, 48, 0.904);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#homeLink:hover {
+    color: rgba(167, 157, 157, 0.911);
+    background-color: rgba(100, 31, 31, 0.904);
+}
+
+#homeLink:active {
+    color: rgba(97, 39, 39, 0.911)11);
+    background-color: rgba(70, 22, 22, 0.904);
+}
