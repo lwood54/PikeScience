@@ -3,11 +3,7 @@ anime({
     targets: '.box',
     translateX: [
       { value: 300, duration: 800 },
-      { value: 200, duration: 3400 }
-    ],
-    translateY: [
-        { value: 200, duration: 900 },
-        { value: 50, duration: 3500 }
+      { value: 50, duration: 2400 }
     ],
     rotate: '6turn',
     backgroundColor: 'rgb(43, 207, 10)',
@@ -18,4 +14,18 @@ anime({
     paddingLeft: '30px',
     delay: 1000,
     loop: true
+  });
+
+  anime({
+      targets: 'body',
+      backgroundColor: 'rgb(73, 80, 117)',
+      duration: 1000,
+      loop: true
+  });
+
+  anime({
+      targets: 'body',
+      delay: 500,
+      backgroundColor: 'rgb(146, 110, 177)',
+      loop: true
   });

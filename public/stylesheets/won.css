@@ -38,6 +38,10 @@
 }
 
 #homeLink:active {
-    color: rgba(97, 39, 39, 0.911)11);
+    color: rgba(97, 39, 39, 0.911);
     background-color: rgba(70, 22, 22, 0.904);
+}
+
+body {
+    background-color: rgb(73, 80, 117);
 }
