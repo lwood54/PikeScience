@@ -1,50 +1,48 @@
 let greenCount = 0;
 let redCount = 0;
 let previousEventTarget = null;
-const handleClick = (ev) => {
-    console.log("initial click event id: ", ev.target.id);
-    previousEventTarget = ev.target;
+const handleClick = ev => {
+  console.log('initial click event id: ', ev.target.id);
+  previousEventTarget = ev.target;
 };
-const handleDropClick = (ev) => {
-    console.log("dropClick event: ", ev);
-    console.log("previousEventTarget: ", previousEventTarget);
-    drop(ev);
-    allowDrop(ev);
-}
+const handleDropClick = ev => {
+  console.log('dropClick event: ', ev);
+  console.log('previousEventTarget: ', previousEventTarget);
+  drop(ev);
+  allowDrop(ev);
+};
 
 //////////////// FUNCTIONS ////////////////
-const drag = (ev) => {
-    ev.dataTransfer.setData("text", ev.target.id);
+const drag = ev => {
+  ev.dataTransfer.setData('text', ev.target.id);
 };
-const allowDrop = (ev) => {
-    ev.preventDefault();
+const allowDrop = ev => {
+  ev.preventDefault();
 };
 
-const drop = (ev) => {
-      // use try/catch to avoid console error when expecting if no children
+const drop = ev => {
+  // use try/catch to avoid console error when expecting if no children
   try {
     // make sure there is no choice card already in the div
     let evObj = document.getElementById(ev.target.id);
     if (ev.target.classList.contains('choices')) {
       return false;
     } else if (evObj.children.length > 0) {
-        return false;
+      return false;
     } else {
-        ev.preventDefault();
-        if (ev.dataTransfer) {
-            let elId = ev.dataTransfer.getData("text");
-            ev.target.appendChild(document.getElementById(elId));
-            checkDropZone(ev.target.id, elId);
-        } else {
-            ev.target.appendChild(document.getElementById(previousEventTarget.id));
-            checkDropZone(ev.target.id, previousEventTarget.id);
-            previousEventTarget = null;
-        }
-        
+      ev.preventDefault();
+      if (ev.dataTransfer) {
+        let elId = ev.dataTransfer.getData('text');
+        ev.target.appendChild(document.getElementById(elId));
+        checkDropZone(ev.target.id, elId);
+      } else {
+        ev.target.appendChild(document.getElementById(previousEventTarget.id));
+        checkDropZone(ev.target.id, previousEventTarget.id);
+        previousEventTarget = null;
+      }
     }
-  }
-  catch(err) {
-    console.log("Expected error if no children: ", err);
+  } catch (err) {
+    console.log('Expected error if no children: ', err);
   }
 };
 
@@ -82,197 +80,197 @@ const drop = (ev) => {
 //       catch(err) {
 //         console.log("Expected error if no children: ", err);
 //       }
-    
+
 // };
 
-const mouseOver = (ev) => {
-    ev.target.style.transform = "scale(1.1)";
-    ev.target.style.transition = "all 0.3s";
+const mouseOver = ev => {
+  ev.target.style.transform = 'scale(1.1)';
+  ev.target.style.transition = 'all 0.3s';
 };
 
-const mouseOut = (ev) => {
-    ev.target.style.transform = "scale(1.0)";
-    ev.target.style.transition = "all 0.1s";
+const mouseOut = ev => {
+  ev.target.style.transform = 'scale(1.0)';
+  ev.target.style.transition = 'all 0.1s';
 };
-  
+
 const updateScore = () => {
-    let scoreNumberEl = document.getElementById("number");
-    let scoreWordEl = document.getElementById("scoreWord");
-    scoreNumberEl.innerHTML = redCount;
-    let percentRight = Math.ceil((15 - redCount)/15 * 100);
-    let cardSelectionDiv = document.getElementById("cardSelection");
-    let button = document.getElementById("nextButton");
-    let currentHref = window.location.href;
-    if (cardSelectionDiv.children.length <= 1) {
-        scoreWordEl.innerHTML = "Score";
-        scoreNumberEl.innerHTML = percentRight + "%";
-        scoreNumberEl.style.paddingLeft = "15%";
-        button.style.visibility = "visible";
-        if (percentRight >= 70) {
-            cardSelectionDiv.style.backgroundColor = "transparent";
-        if (currentHref.includes("Sec_1")) {
-            button.innerHTML = "NEXT CHALLENGE";
-            button.addEventListener("click", () => {
-                if (currentHref.includes("4_1_Sec_1")) {
-                    location.href = "/digitalManipulative4_1_Sec_2";
-                } else if (currentHref.includes("4_3_Sec_1")) {
-                    location.href = "/digitalManipulative4_3_Sec_2";
-                }
-            });
-        } else if (currentHref.includes("Sec_2")) {
-            location.href = "/won";
-            }
-        } else {
-            button.innerHTML = "TRY AGAIN, you need at least 70%.";
-            button.style.fontSize = ".8em";
-            cardSelectionDiv.style.backgroundColor = "transparent";
-            button.addEventListener ("click", function() {
-                // set new location to current window (should cause reload)
-                location.href = window.location.href;
-            });
-        }
+  let scoreNumberEl = document.getElementById('number');
+  let scoreWordEl = document.getElementById('scoreWord');
+  scoreNumberEl.innerHTML = redCount;
+  let percentRight = Math.ceil((15 - redCount) / 15 * 100);
+  let cardSelectionDiv = document.getElementById('cardSelection');
+  let button = document.getElementById('nextButton');
+  let currentHref = window.location.href;
+  if (cardSelectionDiv.children.length <= 1) {
+    scoreWordEl.innerHTML = 'Score';
+    scoreNumberEl.innerHTML = percentRight + '%';
+    scoreNumberEl.style.paddingLeft = '15%';
+    button.style.visibility = 'visible';
+    if (percentRight >= 70) {
+      cardSelectionDiv.style.backgroundColor = 'transparent';
+      if (currentHref.includes('Sec_1')) {
+        button.innerHTML = 'NEXT CHALLENGE';
+        button.addEventListener('click', () => {
+          if (currentHref.includes('4_1_Sec_1')) {
+            location.href = '/digitalManipulative4_1_Sec_2';
+          } else if (currentHref.includes('4_3_Sec_1')) {
+            location.href = '/digitalManipulative4_3_Sec_2';
+          } else if (currentHref.includes('6_1_Sec_1')) {
+            location.href = '/digitalManipulative6_1_Sec_2';
+          }
+        });
+      } else if (currentHref.includes('Sec_2')) {
+        location.href = '/won';
+      }
+    } else {
+      button.innerHTML = 'TRY AGAIN, you need at least 70%.';
+      button.style.fontSize = '.8em';
+      cardSelectionDiv.style.backgroundColor = 'transparent';
+      button.addEventListener('click', function() {
+        // set new location to current window (should cause reload)
+        location.href = window.location.href;
+      });
     }
+  }
 };
 ///////////////////////////////////////////////////////////////////////
 function checkDropZone(targetId, elId) {
-    var targetEl = document.getElementById(targetId);
-    var movingEl = document.getElementById(elId);
-    if (targetEl.classList.contains("fillGreen")) {
-      return true;
-    } else if (checkForCol1(targetId, elId)) {
-        if (targetEl.classList.contains("fillRed")) {
-          whenRedToTrue(targetEl, movingEl);
-        } else {
-          whenBlankToTrue(targetEl, movingEl);
-        }
-    } else if (checkForCol2(targetId, elId)) {
-        if (targetEl.classList.contains("fillRed")) {
-          whenRedToTrue(targetEl, movingEl);
-        } else {
-          whenBlankToTrue(targetEl, movingEl);
-        }
-    } else if (checkForCol3(targetId, elId)) {
-        if (targetEl.classList.contains("fillRed")) {
-            whenRedToTrue(targetEl, movingEl);
-        } else {
-            whenBlankToTrue(targetEl, movingEl);
-        }
-    } else if (checkForCol4(targetId, elId)) {
-        if (targetEl.classList.contains("fillRed")) {
-            whenRedToTrue(targetEl, movingEl);
-        } else {
-            whenBlankToTrue(targetEl, movingEl);
-        }
-    } else if (checkForCol5(targetId, elId)) {
-        if (targetEl.classList.contains("fillRed")) {
-            whenRedToTrue(targetEl, movingEl);
-        } else {
-            whenBlankToTrue(targetEl, movingEl);
-        }
-    } else if (targetEl.classList.contains("fillRed")) {
-        redCount++;
-        updateScore();
-        return false;
+  var targetEl = document.getElementById(targetId);
+  var movingEl = document.getElementById(elId);
+  if (targetEl.classList.contains('fillGreen')) {
+    return true;
+  } else if (checkForCol1(targetId, elId)) {
+    if (targetEl.classList.contains('fillRed')) {
+      whenRedToTrue(targetEl, movingEl);
     } else {
-        targetEl.classList.add("fillRed");
-        redCount++;
-        updateScore();
-        console.log("");
-        return false;
+      whenBlankToTrue(targetEl, movingEl);
     }
-  }
-  
-  function whenRedToTrue(targetEl, movingEl) {
-    targetEl.classList.remove("fillRed");
-    targetEl.classList.add("fillGreen");
-    greenCount++;
+  } else if (checkForCol2(targetId, elId)) {
+    if (targetEl.classList.contains('fillRed')) {
+      whenRedToTrue(targetEl, movingEl);
+    } else {
+      whenBlankToTrue(targetEl, movingEl);
+    }
+  } else if (checkForCol3(targetId, elId)) {
+    if (targetEl.classList.contains('fillRed')) {
+      whenRedToTrue(targetEl, movingEl);
+    } else {
+      whenBlankToTrue(targetEl, movingEl);
+    }
+  } else if (checkForCol4(targetId, elId)) {
+    if (targetEl.classList.contains('fillRed')) {
+      whenRedToTrue(targetEl, movingEl);
+    } else {
+      whenBlankToTrue(targetEl, movingEl);
+    }
+  } else if (checkForCol5(targetId, elId)) {
+    if (targetEl.classList.contains('fillRed')) {
+      whenRedToTrue(targetEl, movingEl);
+    } else {
+      whenBlankToTrue(targetEl, movingEl);
+    }
+  } else if (targetEl.classList.contains('fillRed')) {
+    redCount++;
     updateScore();
-    targetEl.setAttribute("ondragover", false);
-    movingEl.setAttribute("draggable", false);
-    movingEl.style.cursor = "not-allowed";
-    movingEl.style.backgroundColor = "transparent";
-    movingEl.style.boxShadow = "none";
-    movingEl.onmouseover = null;
-    // document.getElementById(currentTouchElementID).removeEventListener('touchmove', hadleMove);
-    // document.getElementById(currentTouchElementID).removeEventListener('touchend', handleEnd);
-    // currentTouchElementID = "";
-    return true;
-  }
-  
-  function whenBlankToTrue(targetEl, movingEl) {
-    targetEl.classList.add("fillGreen");
-    greenCount++;
+    return false;
+  } else {
+    targetEl.classList.add('fillRed');
+    redCount++;
     updateScore();
-    targetEl.setAttribute("ondragover", false);
-    movingEl.setAttribute("draggable", false);
-    movingEl.style.cursor = "not-allowed";
-    movingEl.style.backgroundColor = "transparent";
-    movingEl.style.boxShadow = "none";
-    movingEl.onmouseover = null;
-    // document.getElementById(currentTouchElementID).removeEventListener('touchmove', hadleMove);
-    // document.getElementById(currentTouchElementID).removeEventListener('touchend', handleEnd);
-    // currentTouchElementID = "";
-    return true;
-  }
-  
-  function checkForCol1(targetId, elId) {
-    var targetObj = document.getElementById(targetId);
-    var choiceElObj = document.getElementById(elId);
-    if (targetObj.classList.contains("targetCol1")) {
-      if (choiceElObj.classList.contains("forCol1")) {
-        return true;
-      }
-    }
+    console.log('');
     return false;
   }
-  
-  function checkForCol2(targetId, elId) {
-    var targetObj = document.getElementById(targetId);
-    var choiceElObj = document.getElementById(elId);
-    if (targetObj.classList.contains("targetCol2")) {
-      if (choiceElObj.classList.contains("forCol2")) {
-        return true;
-      }
+}
+
+function whenRedToTrue(targetEl, movingEl) {
+  targetEl.classList.remove('fillRed');
+  targetEl.classList.add('fillGreen');
+  greenCount++;
+  updateScore();
+  targetEl.setAttribute('ondragover', false);
+  movingEl.setAttribute('draggable', false);
+  movingEl.style.cursor = 'not-allowed';
+  movingEl.style.backgroundColor = 'transparent';
+  movingEl.style.boxShadow = 'none';
+  movingEl.onmouseover = null;
+  // document.getElementById(currentTouchElementID).removeEventListener('touchmove', hadleMove);
+  // document.getElementById(currentTouchElementID).removeEventListener('touchend', handleEnd);
+  // currentTouchElementID = "";
+  return true;
+}
+
+function whenBlankToTrue(targetEl, movingEl) {
+  targetEl.classList.add('fillGreen');
+  greenCount++;
+  updateScore();
+  targetEl.setAttribute('ondragover', false);
+  movingEl.setAttribute('draggable', false);
+  movingEl.style.cursor = 'not-allowed';
+  movingEl.style.backgroundColor = 'transparent';
+  movingEl.style.boxShadow = 'none';
+  movingEl.onmouseover = null;
+  // document.getElementById(currentTouchElementID).removeEventListener('touchmove', hadleMove);
+  // document.getElementById(currentTouchElementID).removeEventListener('touchend', handleEnd);
+  // currentTouchElementID = "";
+  return true;
+}
+
+function checkForCol1(targetId, elId) {
+  var targetObj = document.getElementById(targetId);
+  var choiceElObj = document.getElementById(elId);
+  if (targetObj.classList.contains('targetCol1')) {
+    if (choiceElObj.classList.contains('forCol1')) {
+      return true;
     }
-    return false;
   }
-  
-  function checkForCol3(targetId, elId) {
-    var targetObj = document.getElementById(targetId);
-    var choiceElObj = document.getElementById(elId);
-    if (targetObj.classList.contains("targetCol3")) {
-      if (choiceElObj.classList.contains("forCol3")) {
-        return true;
-      }
+  return false;
+}
+
+function checkForCol2(targetId, elId) {
+  var targetObj = document.getElementById(targetId);
+  var choiceElObj = document.getElementById(elId);
+  if (targetObj.classList.contains('targetCol2')) {
+    if (choiceElObj.classList.contains('forCol2')) {
+      return true;
     }
-    return false;
   }
-  
-  function checkForCol4(targetId, elId) {
-    var targetObj = document.getElementById(targetId);
-    var choiceElObj = document.getElementById(elId);
-    if (targetObj.classList.contains("targetCol4")) {
-      if (choiceElObj.classList.contains("forCol4")) {
-        return true;
-      }
+  return false;
+}
+
+function checkForCol3(targetId, elId) {
+  var targetObj = document.getElementById(targetId);
+  var choiceElObj = document.getElementById(elId);
+  if (targetObj.classList.contains('targetCol3')) {
+    if (choiceElObj.classList.contains('forCol3')) {
+      return true;
     }
-    return false;
   }
-  
-  function checkForCol5(targetId, elId) {
-    var targetObj = document.getElementById(targetId);
-    var choiceElObj = document.getElementById(elId);
-    if (targetObj.classList.contains("targetCol5")) {
-      if (choiceElObj.classList.contains("forCol5")) {
-        return true;
-      }
+  return false;
+}
+
+function checkForCol4(targetId, elId) {
+  var targetObj = document.getElementById(targetId);
+  var choiceElObj = document.getElementById(elId);
+  if (targetObj.classList.contains('targetCol4')) {
+    if (choiceElObj.classList.contains('forCol4')) {
+      return true;
     }
-    return false;
   }
+  return false;
+}
+
+function checkForCol5(targetId, elId) {
+  var targetObj = document.getElementById(targetId);
+  var choiceElObj = document.getElementById(elId);
+  if (targetObj.classList.contains('targetCol5')) {
+    if (choiceElObj.classList.contains('forCol5')) {
+      return true;
+    }
+  }
+  return false;
+}
 
 ///////////////////////////////////////////////////////////////////////
-
-
 
 //////////////// LOGIC ////////////////
 
@@ -280,43 +278,39 @@ function checkDropZone(targetId, elId) {
 const collectionOfCards = document.getElementsByClassName('choices');
 let cardArray = [];
 for (var i = 0; i < collectionOfCards.length; i++) {
-    cardArray.push(collectionOfCards[i]);
+  cardArray.push(collectionOfCards[i]);
 }
-cardArray.forEach((cardObj) => {
-    let zIndexVal = Math.floor(Math.random() * cardArray.length);
-    let index = cardArray.indexOf(cardObj);
-    cardArray[index].style.zIndex = zIndexVal;
-    cardArray[index].draggable = true;
-    cardArray[index].onmouseover = mouseOver;
-    cardArray[index].onmouseout = mouseOut;
-    cardArray[index].ondragstart = drag;
-    cardArray[index].onclick = handleClick;
-    // I am setting the property that will be stored on the ev.target.currentEl ---> PRETTY AWESOME!
-    cardArray[index].currentEl = cardArray[index];
-    // cardArray[index].addEventListener('touchmove', handleMove, false);
-    
-    // cardArray[index].addEventListener('touchmove', (ev) => {
-    //     let touch = ev.targetTouches[0];
-    //     currentTouchElementID = cardArray[index].id;
-    //     cardArray[index].style.left = touch.pageX - 60 + "px";
-    //     cardArray[index].style.top = touch.pageY - 60 + "px";
-    //     ev.preventDefault();
-    // }, false);
+cardArray.forEach(cardObj => {
+  let zIndexVal = Math.floor(Math.random() * cardArray.length);
+  let index = cardArray.indexOf(cardObj);
+  cardArray[index].style.zIndex = zIndexVal;
+  cardArray[index].draggable = true;
+  cardArray[index].onmouseover = mouseOver;
+  cardArray[index].onmouseout = mouseOut;
+  cardArray[index].ondragstart = drag;
+  cardArray[index].onclick = handleClick;
+  // I am setting the property that will be stored on the ev.target.currentEl ---> PRETTY AWESOME!
+  cardArray[index].currentEl = cardArray[index];
+  // cardArray[index].addEventListener('touchmove', handleMove, false);
 
+  // cardArray[index].addEventListener('touchmove', (ev) => {
+  //     let touch = ev.targetTouches[0];
+  //     currentTouchElementID = cardArray[index].id;
+  //     cardArray[index].style.left = touch.pageX - 60 + "px";
+  //     cardArray[index].style.top = touch.pageY - 60 + "px";
+  //     ev.preventDefault();
+  // }, false);
 });
 
-
-
-const collectionOfDropZones = document.getElementsByClassName("dropZone");
-for(var i = 0; i < collectionOfDropZones.length; i++) {
+const collectionOfDropZones = document.getElementsByClassName('dropZone');
+for (var i = 0; i < collectionOfDropZones.length; i++) {
   collectionOfDropZones[i].ondrop = drop;
-//   collectionOfDropZones[i].addEventListener('touchend', handleEnd, false);
+  //   collectionOfDropZones[i].addEventListener('touchend', handleEnd, false);
   collectionOfDropZones[i].ondragover = allowDrop;
   collectionOfDropZones[i].onclick = handleDropClick;
 }
 
 // 2. make the ability to drag those cards anywhere on the screen
-
 
 // 3. check for placement accuracy
 //      a. if correct:

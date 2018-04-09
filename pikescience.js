@@ -2,7 +2,9 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const favicon = require('serve-favicon');
-const handlebars = require('express-handlebars').create({defaultLayout:'main'});
+const handlebars = require('express-handlebars').create({
+  defaultLayout: 'main'
+});
 
 // starts express app
 const app = express();
@@ -30,26 +32,29 @@ app.use('/about', about);
 // set up routes for each digital manipulative
 
 // UNIT 4
-  
-  // 4.1
+
+// 4.1
 const digitalManipulative4_1_Sec_1 = require('./routes/digitalManipulative4_1_Sec_1');
 app.use('/digitalManipulative4_1_Sec_1', digitalManipulative4_1_Sec_1);
 const digitalManipulative4_1_Sec_2 = require('./routes/digitalManipulative4_1_Sec_2');
 app.use('/digitalManipulative4_1_Sec_2', digitalManipulative4_1_Sec_2);
-  
-  // 4.3
+
+// 4.3
 const digitalManipulative4_3_Sec_1 = require('./routes/digitalManipulative4_3_Sec_1');
 app.use('/digitalManipulative4_3_Sec_1', digitalManipulative4_3_Sec_1);
 const digitalManipulative4_3_Sec_2 = require('./routes/digitalManipulative4_3_Sec_2');
 app.use('/digitalManipulative4_3_Sec_2', digitalManipulative4_3_Sec_2);
 
-
-
+// UNIT 6
+// 6.1
+const digitalManipulative6_1_Sec_1 = require('./routes/digitalManipulative6_1_Sec_1');
+app.use('/digitalManipulative6_1_Sec_1', digitalManipulative6_1_Sec_1);
+const digitalManipulative6_1_Sec_2 = require('./routes/digitalManipulative6_1_Sec_2');
+app.use('/digitalManipulative6_1_Sec_2', digitalManipulative6_1_Sec_2);
 
 // USER WON PAGE
 const userWon = require('./routes/won.js');
 app.use('/won', userWon);
-
 
 //////// CATCHING ERRORS /////////////
 // 404 catch-all hanlder (middleware)
@@ -64,7 +69,6 @@ app.use(function(err, req, res, next) {
   res.status(500);
   res.render('500');
 });
-
 
 //////////////// INITIATING SERVER //////////////
 // creates server and listens
